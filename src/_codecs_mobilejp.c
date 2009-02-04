@@ -500,7 +500,7 @@ static int
 init_emoji_table(PyObject *table)
 {
   PyObject *key, *value, *emoji, *item, *unicode;
-  int pos = 0;
+  Py_ssize_t pos = 0;
 
   if ((docomo_table = PyDict_New()) == NULL ||
       (kddi_table = PyDict_New()) == NULL ||

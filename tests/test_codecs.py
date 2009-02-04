@@ -121,6 +121,11 @@ def test_softbank_utf8_encode():
     res = codec.encode(u"\uec47")
     assert res == ('[\xef\xbd\xb6\xef\xbe\x92]', 1), res
 
+def test_utf8_convert():
+    from mobilejpcodecs import softbank_utf8
+    codec = softbank_utf8.Codec()
+    assert (codec.encode(u'\ue74b')[0]).decode("utf8") == u'\ue30b'
+
 def test_min_unicode():
     def func(carrier):
         c = codecs.lookup('x_sjis_%s' % carrier)
