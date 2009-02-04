@@ -200,7 +200,7 @@ def test_softbank_obsolete():
 
 def test_iso2022_jp_kddi_decode():
     def func(value, expected):
-        result = binascii.unhexlify(value.replace(' ', '')).decode('iso2022_jp_kddi')
+        result = binascii.unhexlify(value.replace(' ', '')).decode('x_iso2022_jp_kddi')
         assert isinstance(result, unicode)
         assert result == expected, "%r expected, actual %r" % (expected, result)
 
