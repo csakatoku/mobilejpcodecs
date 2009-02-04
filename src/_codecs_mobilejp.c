@@ -706,10 +706,10 @@ x_utf_8_softbank_encode(PyObject *self, PyObject *args)
  */
 
 BEGIN_CODECS_LIST
-  CODEC_STATELESS(x_sjis_docomo)
-  CODEC_STATELESS(x_sjis_kddi)
-  CODEC_STATELESS(x_sjis_kddi_raw)
-  CODEC_STATELESS(x_sjis_softbank)
+  CODEC_STATEFUL(x_sjis_docomo)
+  CODEC_STATEFUL(x_sjis_kddi)
+  CODEC_STATEFUL(x_sjis_kddi_raw)
+  CODEC_STATEFUL(x_sjis_softbank)
 END_CODECS_LIST
 
 static struct PyMethodDef __methods[] = {
