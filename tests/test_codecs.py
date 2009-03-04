@@ -33,6 +33,13 @@ def test_softbank_encode():
     s100 = codec.encode(u"\ue6ad" * 100)[0]
     assert s * 100 == s100
 
+    # Foot emoji of SoftBank
+    value = codec.encode(u"\ue536")[0]
+    assert value == '\xfb\xd6'
+
+    # Foot emoji of docomo
+    value = codec.encode(u"\ue698")[0]
+    assert value == '\xfb\xd6'
 
 def test_docomo_utf8_encode():
     from mobilejpcodecs import docomo_utf8
