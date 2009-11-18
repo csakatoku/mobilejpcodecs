@@ -189,12 +189,32 @@ decode_mobilejp(MultibyteCodec_State *state, const void *config,
  * x-sjis-docomo codec based on CP932 codec
  */
 
+ENCODER_INIT(x_sjis_docomo)
+{
+  return 0;
+}
+
+ENCODER_RESET(x_sjis_docomo)
+{
+  return 0;
+}
+
 static Py_ssize_t
 x_sjis_docomo_encode(MultibyteCodec_State *state, const void *config,
 		     const Py_UNICODE **inbuf, Py_ssize_t inleft,
 		     unsigned char **outbuf, Py_ssize_t outleft, int flags)
 {
   return encode_mobilejp(state, config, inbuf, inleft, outbuf, outleft, flags, __docomo_decmap);
+}
+
+DECODER_INIT(x_sjis_docomo)
+{
+  return 0;
+}
+
+DECODER_RESET(x_sjis_docomo)
+{
+  return 0;
 }
 
 DECODER(x_sjis_docomo)
@@ -207,12 +227,32 @@ DECODER(x_sjis_docomo)
  * x-sjis-kddi codec based on CP932 codec
  */
 
+ENCODER_INIT(x_sjis_kddi)
+{
+  return 0;
+}
+
+ENCODER_RESET(x_sjis_kddi)
+{
+  return 0;
+}
+
 static Py_ssize_t
 x_sjis_kddi_encode(MultibyteCodec_State *state, const void *config,
 		   const Py_UNICODE **inbuf, Py_ssize_t inleft,
 		   unsigned char **outbuf, Py_ssize_t outleft, int flags)
 {
   return encode_mobilejp(state, config, inbuf, inleft, outbuf, outleft, flags, __kddi_decmap);
+}
+
+DECODER_INIT(x_sjis_kddi)
+{
+  return 0;
+}
+
+DECODER_RESET(x_sjis_kddi)
+{
+  return 0;
 }
 
 static ucs2_t
@@ -254,6 +294,16 @@ kddi_raw_decoder(unsigned char c, unsigned char c2)
   else { return 0; }
 }
 
+DECODER_INIT(x_sjis_kddi_raw)
+{
+  return 0;
+}
+
+DECODER_RESET(x_sjis_kddi_raw)
+{
+  return 0;
+}
+
 static Py_ssize_t
 x_sjis_kddi_raw_decode(MultibyteCodec_State *state, const void *config,
 		       const unsigned char **inbuf, Py_ssize_t inleft,
@@ -266,6 +316,16 @@ x_sjis_kddi_raw_decode(MultibyteCodec_State *state, const void *config,
 /*
  * x-sjis-kddi-raw codec based on CP932 codec
  */
+
+ENCODER_INIT(x_sjis_kddi_raw)
+{
+  return 0;
+}
+
+ENCODER_RESET(x_sjis_kddi_raw)
+{
+  return 0;
+}
 
 ENCODER(x_sjis_kddi_raw)
 {
@@ -363,7 +423,6 @@ ENCODER(x_sjis_kddi_raw)
  * x-sjis-softbank codec based on CP932 codec
  */
 
-/*
 ENCODER_INIT(x_sjis_softbank)
 {
   return 0;
@@ -373,7 +432,6 @@ ENCODER_RESET(x_sjis_softbank)
 {
   return 0;
 }
-*/
 
 static Py_ssize_t
 x_sjis_softbank_encode(MultibyteCodec_State *state, const void *config,
@@ -383,7 +441,6 @@ x_sjis_softbank_encode(MultibyteCodec_State *state, const void *config,
   return encode_mobilejp(state, config, inbuf, inleft, outbuf, outleft, flags, __softbank_decmap);
 }
 
-/*
 DECODER_INIT(x_sjis_softbank)
 {
   return 0;
@@ -393,7 +450,6 @@ DECODER_RESET(x_sjis_softbank)
 {
   return 0;
 }
-*/
 
 static ucs2_t
 softbank_decoder(unsigned char high, unsigned char low)
@@ -650,10 +706,10 @@ x_utf_8_softbank_encode(PyObject *self, PyObject *args)
  */
 
 BEGIN_CODECS_LIST
-  CODEC_STATELESS(x_sjis_docomo)
-  CODEC_STATELESS(x_sjis_kddi)
-  CODEC_STATELESS(x_sjis_kddi_raw)
-  CODEC_STATELESS(x_sjis_softbank)
+  CODEC_STATEFUL(x_sjis_docomo)
+  CODEC_STATEFUL(x_sjis_kddi)
+  CODEC_STATEFUL(x_sjis_kddi_raw)
+  CODEC_STATEFUL(x_sjis_softbank)
 END_CODECS_LIST
 
 static struct PyMethodDef __methods[] = {
