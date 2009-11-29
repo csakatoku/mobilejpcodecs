@@ -6,7 +6,7 @@ import pprint
 import optparse
 import binascii
 
-import syck
+import yaml
 from jinja2 import Template
 from mobilejpcodecs import emojitable
 
@@ -17,7 +17,7 @@ TMPL = Template("""static const struct emoji_t __{{ carrier }}_decmap[] = {
 };""")
 
 def make_unicode_to_sjis_dict(filename, unicode_key, sjis_key):
-    data = syck.load(file(filename).read())
+    data = yaml.load(file(filename))
     res = {}
     for x in data:
         uni  = unichr(int(x[unicode_key], 16))

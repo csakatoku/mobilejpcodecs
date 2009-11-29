@@ -2,12 +2,8 @@
 import os
 yamlfile = lambda x: file(os.path.join('dat', x))
 
-try:
-    import syck
-    yaml_load = lambda filename: syck.load(yamlfile(filename).read())
-except ImportError:
-    import yaml
-    yaml_load = lambda filename: yaml.load(yamlfile(filename))
+import yaml
+yaml_load = lambda filename: yaml.load(yamlfile(filename))
 
 import binascii
 import mobilejpcodecs
